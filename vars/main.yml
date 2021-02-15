@@ -1,0 +1,6 @@
+---
+lines_in_files:
+  - line:               '\1t210\2'
+    regexp:             '^(deb .*/)<SOC>( .*)$'
+    backrefs:           True
+    dest:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
