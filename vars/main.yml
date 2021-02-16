@@ -4,3 +4,8 @@ lines_in_files:
     regexp:             '^(deb .*/)<SOC>( .*)$'
     backrefs:           True
     dest:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
+  - line:               '/usr/lib/aarch64-linux-gnu/tegra'
+    regexp:             '^/usr/lib/tegra$'
+    dest:               '/etc/ld.so.conf.d/nvidia-tegra.conf'
+commands:
+  - command:            ldconfig

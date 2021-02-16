@@ -1,2 +1,4 @@
 ---
 - include:              '../tasks/lines_in_files.yml'
+- include:              '../tasks/commands.yml'
+  when:                 lines_in_files_result.changed
