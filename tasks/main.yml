@@ -13,3 +13,9 @@
   args:
     lines_in_files:     "{{ lines_in_files_stock }}"
   when:                 stock_sources_result.stat.exists
+- include:              '../tasks/commands.yml'
+  args:
+    commands:           "{{ commands_stock }}"
+  when:                 stock_sources_result.stat.exists
+                        and lines_in_files_result.changed
+  changed_when:         False

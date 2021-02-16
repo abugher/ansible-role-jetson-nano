@@ -4,6 +4,8 @@ lines_in_files_stock:
     regexp:             '^(deb .*/)<SOC>( .*)$'
     backrefs:           True
     dest:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
+commands_stock:
+  - command:            apt update
 lines_not_in_files:
   - regexp:             '^/usr/lib/tegra$'
     dest:               '/etc/ld.so.conf.d/nvidia-tegra.conf'
