@@ -1,4 +1,15 @@
 ---
+- include:              '../tasks/lines_not_in_files.yml'
 - include:              '../tasks/lines_in_files.yml'
 - include:              '../tasks/commands.yml'
-  when:                 lines_in_files_result.changed
+  when:                 lines_not_in_files_result.changed
+                        or lines_in_files_result.changed
+
+# Specific to Ubuntu stock image frm Nvidia:
+- stat:
+    path:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
+  register:             stock_sources_result
+- include:              '../tasks/lines_in_files.yml'
+  args:
+    lines_in_files:     "{{ lines_in_files_stock }}"
+  when:                 stock_sources_result.stat.exists
