@@ -10,12 +10,12 @@
     path:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
   register:             stock_sources_result
 - include_tasks:        '../tasks/lines_in_files.yml'
-  args:
+  vars:
     lines_in_files:     "{{ lines_in_files_stock }}"
   when:                 stock_sources_result.stat.exists
 - include_tasks:        '../tasks/commands.yml'
-  args:
+  vars:
     commands:           "{{ commands_stock }}"
+    changed_when:       False
   when:                 stock_sources_result.stat.exists
                         and lines_in_files_result.changed
-  changed_when:         False
