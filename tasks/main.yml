@@ -1,7 +1,7 @@
 ---
-- include_tasks:        '../tasks/lines_not_in_files.yml'
-- include_tasks:        '../tasks/lines_in_files.yml'
-- include_tasks:        '../tasks/commands.yml'
+- include_tasks:        'tasks/common/lines_not_in_files.yml'
+- include_tasks:        'tasks/common/lines_in_files.yml'
+- include_tasks:        'tasks/common/commands.yml'
   when:                 lines_not_in_files_result.changed
                         or lines_in_files_result.changed
 
@@ -9,11 +9,11 @@
 - stat:
     path:               '/etc/apt/sources.list.d/nvidia-l4t-apt-source.list'
   register:             stock_sources_result
-- include_tasks:        '../tasks/lines_in_files.yml'
+- include_tasks:        'tasks/common/lines_in_files.yml'
   vars:
     lines_in_files:     "{{ lines_in_files_stock }}"
   when:                 stock_sources_result.stat.exists
-- include_tasks:        '../tasks/commands.yml'
+- include_tasks:        'tasks/common/commands.yml'
   vars:
     commands:           "{{ commands_stock }}"
     changed_when:       False
